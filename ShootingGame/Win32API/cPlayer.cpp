@@ -18,13 +18,16 @@ void cPlayer::Setup()
 
 void cPlayer::Update()
 {
+	m_pPlayerImage->SetFrameX(0);
 	if (m_pPlayerImage->GetBoundingBox().left > 0 && g_pKeyManager->isStayKeyDown('A'))
 	{
 		m_pPlayerImage->SetPosX(m_pPlayerImage->GetPosX() - 5.0f);
+		m_pPlayerImage->SetFrameX(1);
 	}
 	else if (m_pPlayerImage->GetBoundingBox().right  < WINSIZEX && g_pKeyManager->isStayKeyDown('D'))
 	{
 		m_pPlayerImage->SetPosX(m_pPlayerImage->GetPosX() + 5.0f);
+		m_pPlayerImage->SetFrameX(2);
 	}
 	else if (m_pPlayerImage->GetBoundingBox().bottom  < WINSIZEY && g_pKeyManager->isStayKeyDown('S'))
 	{
@@ -46,6 +49,18 @@ void cPlayer::Render()
 	Rectangle(g_hDC, m_pPlayerImage->GetBoundingBox().left, m_pPlayerImage->GetBoundingBox().top, m_pPlayerImage->GetBoundingBox().right, m_pPlayerImage->GetBoundingBox().bottom);
 	if (m_pPlayerImage != NULL)
 	{
-		m_pPlayerImage->FrameRender(g_hDC, m_pPlayerImage->GetPosX() - (m_pPlayerImage->GetFrameWidth() / 2), m_pPlayerImage->GetPosY() - (m_pPlayerImage->GetFrameHeight() / 2), 0, 0);
+		//if (g_pKeyManager->isStayKeyDown('A'))
+		//{
+			m_pPlayerImage->FrameRender(g_hDC, m_pPlayerImage->GetPosX() - (m_pPlayerImage->GetFrameWidth() / 2), m_pPlayerImage->GetPosY() - (m_pPlayerImage->GetFrameHeight() / 2), 1, 0);
+		//}
+		//else if (g_pKeyManager->isStayKeyDown('D'))
+		//{
+		//	m_pPlayerImage->FrameRender(g_hDC, m_pPlayerImage->GetPosX() - (m_pPlayerImage->GetFrameWidth() / 2), m_pPlayerImage->GetPosY() - (m_pPlayerImage->GetFrameHeight() / 2), 2, 0);
+		//}
+		//else
+		//{
+		//	m_pPlayerImage->FrameRender(g_hDC, m_pPlayerImage->GetPosX() - (m_pPlayerImage->GetFrameWidth() / 2), m_pPlayerImage->GetPosY() - (m_pPlayerImage->GetFrameHeight() / 2), 0, 0);
+		//}
+
 	}
 }
