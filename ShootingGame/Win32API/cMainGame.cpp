@@ -48,6 +48,9 @@ void cMainGame::Update()
 		Setup();
 		m_isPlaying = true;
 	}
+
+
+
 }
 
 void cMainGame::Render()

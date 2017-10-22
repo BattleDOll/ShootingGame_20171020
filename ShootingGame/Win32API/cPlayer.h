@@ -4,6 +4,7 @@ class cPlayer
 {
 private:
 	cImage*		m_pPlayer;		// 플레이어 이미지 파일	
+	bool		m_isShoot;
 
 	int			m_nDamageDelay;		// 연속 데미지 방지용 딜레이(무적 모드)
 
@@ -22,5 +23,7 @@ public:
 
 	float GetPosX() { return m_pPlayer->GetPosX(); }
 	float GetPosY() { return m_pPlayer->GetPosY(); }
+
+	bool GetIsShoot() { return m_isShoot; }
 };
 

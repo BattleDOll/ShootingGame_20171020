@@ -1,5 +1,7 @@
 #pragma once
 
+class cPlayer;
+
 struct tagEnemy
 {
 	float	x, y;
@@ -13,6 +15,8 @@ struct tagEnemy
 class cEnemy
 {
 private:
+	cPlayer*					m_pPlayer;
+
 	vector<tagEnemy>			m_vecEnemy;
 	vector<tagEnemy>::iterator	m_iterEnemy;
 	tagEnemy stEnemy;
@@ -28,6 +32,9 @@ public:
 	void Setup();
 	void Update();
 	void Render();
+
+	RECT GetBoundingBox() { return m_imgEnemy->GetBoundingBox(); }
+
 
 	float GetPosX() { return m_imgEnemy->GetPosX(); }
 	float GetPosY() { return m_imgEnemy->GetPosY(); }

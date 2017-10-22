@@ -14,37 +14,58 @@ cPlayer::~cPlayer()
 void cPlayer::Setup()
 {
 	m_pPlayer = g_pImageManager->FindImage("Player");
+	m_isShoot = false;
 }
 
 void cPlayer::Update()
 {
-	if (m_pPlayer->GetBoundingBox(3, 0, 20, 0).left > 0 && g_pKeyManager->isStayKeyDown('A'))
+	if (g_pKeyManager->isStayKeyDown('A') || g_pKeyManager->isStayKeyDown(VK_LEFT))
 	{
-		m_pPlayer->SetPosX(m_pPlayer->GetPosX() - 5.0f);
+		if (m_pPlayer->GetBoundingBox(3, 0, 20, 0).left > 0)
+		{
+			m_pPlayer->SetPosX(m_pPlayer->GetPosX() - 5.0f);
+		}
 	}
-	else if (m_pPlayer->GetBoundingBox(-3, 0, 20, 0).right  < WINSIZEX && g_pKeyManager->isStayKeyDown('D'))
+	else if (g_pKeyManager->isStayKeyDown('D') || g_pKeyManager->isStayKeyDown(VK_RIGHT))
 	{
-		m_pPlayer->SetPosX(m_pPlayer->GetPosX() + 5.0f);
+		if (m_pPlayer->GetBoundingBox(-3, 0, 20, 0).right < WINSIZEX)
+		{
+			m_pPlayer->SetPosX(m_pPlayer->GetPosX() + 5.0f);
+		}
 	}
-	if (m_pPlayer->GetBoundingBox().bottom  < WINSIZEY && g_pKeyManager->isStayKeyDown('S'))
+	if (g_pKeyManager->isStayKeyDown('S') || g_pKeyManager->isStayKeyDown(VK_DOWN))
 	{
-		m_pPlayer->SetPosY(m_pPlayer->GetPosY() + 5.0f);
+		if (m_pPlayer->GetBoundingBox().bottom < WINSIZEY)
+		{
+			m_pPlayer->SetPosY(m_pPlayer->GetPosY() + 5.0f);
+		}
 	}
-	else if (m_pPlayer->GetBoundingBox().top  > 0 && g_pKeyManager->isStayKeyDown('W'))
+	else if (g_pKeyManager->isStayKeyDown('W') || g_pKeyManager->isStayKeyDown(VK_UP))
 	{
-		m_pPlayer->SetPosY(m_pPlayer->GetPosY() - 5.0f);
+		if (m_pPlayer->GetBoundingBox().top > 0)
+		{
+			m_pPlayer->SetPosY(m_pPlayer->GetPosY() - 5.0f);
+		}
 	}
 
-	if (g_pKeyManager->isOnceKeyDown(VK_SPACE))
+	if (g_pKeyManager->isStayKeyDown(VK_SPACE))
 	{
+		m_isShoot = true;
+	}
+	else
+	{
+		m_isShoot = false;
 	}
 }
 
 void cPlayer::Render()
 {
+	HPEN hPen1 = (HPEN)CreatePen(0, 1, RGB(0, 0, 255));
+	HPEN hSelectPen1 = (HPEN)SelectObject(g_hDC, hPen1);
+
 	if (m_pPlayer != NULL)
 	{
-		if (g_pKeyManager->isStayKeyDown('A'))
+		if (g_pKeyManager->isStayKeyDown('A') || g_pKeyManager->isStayKeyDown(VK_LEFT))
 		{
 			Rectangle(g_hDC,
 				m_pPlayer->GetBoundingBox(3, 0, 20, 0).left,
@@ -56,7 +77,7 @@ void cPlayer::Render()
 				m_pPlayer->GetPosX() - (m_pPlayer->GetFrameWidth() / 2), 
 				m_pPlayer->GetPosY() - (m_pPlayer->GetFrameHeight() / 2), 1, 0);
 		}
-		else if (g_pKeyManager->isStayKeyDown('D'))
+		else if (g_pKeyManager->isStayKeyDown('D') || g_pKeyManager->isStayKeyDown(VK_RIGHT))
 		{
 			Rectangle(g_hDC,
 				m_pPlayer->GetBoundingBox(-3, 0, 20, 0).left,
@@ -81,4 +102,7 @@ void cPlayer::Render()
 				m_pPlayer->GetPosY() - (m_pPlayer->GetFrameHeight() / 2), 0, 0);
 		}
 	}
+
+	DeleteObject(hSelectPen1);
+	DeleteObject(hPen1);
 }

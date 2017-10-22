@@ -18,9 +18,12 @@ struct tagEnemyBullet
 struct tagPlayerBullet
 {
 	float x, y;				// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
+	float y1;
 	float speed;			// ÃÑ¾Ë ¼Ó·Â
 	float angle;			// ÃÑ¾Ë ¹æÇâ
 	float radius;			// ÃÑ¾Ë ¹ÝÁö¸§
+
+	RECT	rtPlayerBullet;
 
 	int ShootDelay;
 };
