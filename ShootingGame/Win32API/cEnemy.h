@@ -24,6 +24,8 @@ private:
 	cImage*	m_imgEnemy;
 
 	float	m_fMoveSpeed;
+	int		m_nEnemyDamage;
+	int		m_nEnemyHP;
 
 public:
 	cEnemy();
@@ -38,6 +40,12 @@ public:
 
 	float GetPosX() { return m_imgEnemy->GetPosX(); }
 	float GetPosY() { return m_imgEnemy->GetPosY(); }
+
+	int GetEnemyHP() { return m_nEnemyHP; }
+	void SetEnemyHP(int hp) { m_nEnemyHP = hp; }
+	int GetEnemyDamage() { return m_nEnemyDamage; }
+	int SetEnemyDamage(int damage) { m_nEnemyDamage = damage; }
+
 
 	void CreateEnemy();
 

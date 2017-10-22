@@ -46,14 +46,17 @@ void cBullet::Update()
 			if (IntersectRect(&rt, &m_pPlayer->GetCollisionNomal(), &iter->rtEnemyBullet))
 			{
 				iter= m_vecEnemyBullets.erase(iter);
+				m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - 2);
 			}
 			else if (IntersectRect(&rt, &m_pPlayer->GetCollisionLeft(), &iter->rtEnemyBullet))
 			{
 				iter = m_vecEnemyBullets.erase(iter);
+				m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - 2);
 			}
 			else if (IntersectRect(&rt, &m_pPlayer->GetCollisionRight(), &iter->rtEnemyBullet))
 			{
 				iter = m_vecEnemyBullets.erase(iter);
+				m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - 2);
 			}
 			else
 			{
@@ -73,12 +76,13 @@ void cBullet::Update()
 
 			playerBullet.x = m_pPlayer->GetPosX();
 			playerBullet.y = m_pPlayer->GetPosY();
-			playerBullet.y1 = m_pPlayer->GetPosY();
-			playerBullet.speed = 5;
+			playerBullet.speed = 10;
 			playerBullet.radius = 3;
 			playerBullet.angle = GetAngle(playerBullet.x, playerBullet.y, m_pEnemy->GetPosX(), m_pEnemy->GetPosY());
 
 			m_vecPlayerBullets.push_back(playerBullet);
+			m_pEnemy->SetEnemyHP(m_pEnemy->GetEnemyHP() - 5);
+
 		}
 	}
 	else
@@ -88,28 +92,26 @@ void cBullet::Update()
 
 	for (auto iter = m_vecPlayerBullets.begin(); iter != m_vecPlayerBullets.end();)
 	{
-		if (m_pPlayer->GetPosY() < m_pEnemy->GetPosY())
-		{
-			iter->x += cosf(iter->angle / 180 * PI) * iter->speed;
-			iter->y += -sinf(iter->angle / 180 * PI) * iter->speed;
-		}
-		else
-		{
-			iter->y -= iter->speed;
-		}
+
+//		iter->x += cosf(iter->angle / 180 * PI) * iter->speed;
+//		iter->y += -sinf(iter->angle / 180 * PI) * iter->speed;
+
+		iter->y -= iter->speed;
 
 		RECT rt1;
 		iter->rtPlayerBullet = RectMakeCenter((int)iter->x, (int)iter->y, (int)iter->radius * 2, (int)iter->radius * 2);
-		if ((IntersectRect(&rt1, &m_pEnemy->GetBoundingBox() , &iter->rtPlayerBullet)) || iter->y < 0 )
+		if ((IntersectRect(&rt1, &m_pEnemy->GetBoundingBox(), &iter->rtPlayerBullet)) || iter->y < 0)
 		{
 			iter = m_vecPlayerBullets.erase(iter);
+
+
 		}
 		else
 		{
 			iter++;
 		}
 	}
-	
+
 }
 
 void cBullet::Render()

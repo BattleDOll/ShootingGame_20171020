@@ -12,20 +12,23 @@ struct tagEnemyBullet
 
 	RECT	rtEnemyBullet;
 
-	int ShootDelay;
+	int		ShootDelay;
+	int		Damage;
 };
 
 struct tagPlayerBullet
 {
-	float x, y;				// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
-	float y1;
-	float speed;			// ÃÑ¾Ë ¼Ó·Â
-	float angle;			// ÃÑ¾Ë ¹æÇâ
-	float radius;			// ÃÑ¾Ë ¹ÝÁö¸§
+	float	x, y;				// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
+	float	x1, y1;
+	float	speed;			// ÃÑ¾Ë ¼Ó·Â
+	float	speed1;
+	float	angle;			// ÃÑ¾Ë ¹æÇâ
+	float	radius;			// ÃÑ¾Ë ¹ÝÁö¸§
 
 	RECT	rtPlayerBullet;
 
-	int ShootDelay;
+	int		ShootDelay;
+	int		Damage;
 };
 
 class cBullet

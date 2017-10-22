@@ -15,6 +15,7 @@ void cEnemy::Setup()
 {
 
 	m_imgEnemy = g_pImageManager->FindImage("Enemy");
+	m_nEnemyHP = 1000;
 }
 
 void cEnemy::Update()
@@ -40,6 +41,12 @@ void cEnemy::Render()
 
 	DeleteObject(hSelectPen);
 	DeleteObject(hPen);
+
+	string str("Enemy HP : ");
+	char szStr[128];
+
+	str += itoa(m_nEnemyHP, szStr, 10);
+	TextOutA(g_hDC, 100, 75, str.c_str(), str.length());
 }
 
 void cEnemy::CreateEnemy()

@@ -15,6 +15,8 @@ void cPlayer::Setup()
 {
 	m_pPlayer = g_pImageManager->FindImage("Player");
 	m_isShoot = false;
+	m_nPlayerHP = 100;
+	m_nPlayerDamage = 10;
 }
 
 void cPlayer::Update()
@@ -105,4 +107,14 @@ void cPlayer::Render()
 
 	DeleteObject(hSelectPen1);
 	DeleteObject(hPen1);
+
+	string str("Player HP : ");
+	char szStr[128]; 
+
+	str += itoa(m_nPlayerHP, szStr, 10);
+	TextOutA(g_hDC, 100, 50, str.c_str(), str.length());
+
+	//str = "ปýธํทย : ";
+	//str += itoa(m_nLife, szStr, 10);
+	//TextOutA(g_hDC, 100, 75, str.c_str(), str.length());
 }

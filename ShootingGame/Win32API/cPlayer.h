@@ -7,6 +7,8 @@ private:
 	bool		m_isShoot;
 
 	int			m_nDamageDelay;		// 연속 데미지 방지용 딜레이(무적 모드)
+	int			m_nPlayerHP;
+	int			m_nPlayerDamage;
 
 public:
 	cPlayer();
@@ -23,6 +25,8 @@ public:
 
 	float GetPosX() { return m_pPlayer->GetPosX(); }
 	float GetPosY() { return m_pPlayer->GetPosY(); }
+	int GetPlayerHP() { return m_nPlayerHP; }
+	void SetPlayerHP(int hp) { m_nPlayerHP = hp; }
 
 	bool GetIsShoot() { return m_isShoot; }
 };
