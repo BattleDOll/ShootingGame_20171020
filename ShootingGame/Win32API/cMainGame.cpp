@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "cMainGame.h"
 #include "cPlayer.h"
-#include "cObjects.h"
-#include "cMap.h"
+#include "cEnemy.h"
+#include "cBullet.h"
 
 cMainGame::cMainGame()
 	: m_isPlaying(false)
@@ -11,25 +11,26 @@ cMainGame::cMainGame()
 	g_pImageManager->AddImage("Player", "images/Player.bmp", 128, 32, 4, 1, WINSIZEX / 2 + 16, WINSIZEY - 200, true, RGB(255, 0, 255));
 
 	m_pPlayer = new cPlayer;
-	m_pObjects = new cObjects;
-	m_pMap = new cMap;
+	m_pEnemy = new cEnemy;
+	m_pBullet = new cBullet;
 }
 
 cMainGame::~cMainGame()
 {
 	delete m_pPlayer;
-	delete m_pMap;
-	delete m_pObjects;
+	delete m_pEnemy;
+	delete m_pBullet;
 }
 
 void cMainGame::Setup()
 {
 	m_pPlayer->Setup();	
-	m_pObjects->Setup();
-	// 오브젝트 클래스가 플레이어와 맵 클래스를 참조 받도록 한다.
-//	m_pObjects->SetPlayer(m_pPlayer);
-//	m_pObjects->SetMap(m_pMap);
-	m_pMap->Setup();
+	m_pEnemy->Setup();
+
+	// 불렛에서 플레이어와 에너미 참조? 
+	m_pBullet->Setup();
+	m_pBullet->SetPlayer(m_pPlayer);
+	m_pBullet->SetEnemy(m_pEnemy);
 }
 
 void cMainGame::Update()
@@ -38,9 +39,9 @@ void cMainGame::Update()
 
 	if (m_isPlaying)
 	{
-		m_pObjects->Update();
+		m_pEnemy->Update();
 		m_pPlayer->Update();
-		m_pMap->Update();
+		m_pBullet->Update();
 	}
 	else if (g_pKeyManager->isOnceKeyDown(VK_RETURN))
 	{
@@ -56,9 +57,9 @@ void cMainGame::Render()
 
 	if (m_isPlaying)
 	{
-		m_pObjects->Render();
+		m_pEnemy->Render();
 		m_pPlayer->Render();
-		m_pMap->Render();
+		m_pBullet->Render();
 	}
 	else
 	{

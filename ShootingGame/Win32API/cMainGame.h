@@ -1,18 +1,18 @@
 #pragma once
 #include "cGameNode.h"
 
-class cMap;
 class cPlayer;
-class cObjects;
+class cEnemy;
+class cBullet;
 
 class cMainGame : public cGameNode
 {
 private:
 	bool			m_isPlaying;
 
-	cMap*			m_pMap;
 	cPlayer*		m_pPlayer;
-	cObjects*		m_pObjects;
+	cEnemy*			m_pEnemy;
+	cBullet*		m_pBullet;
 
 public:
 	cMainGame();

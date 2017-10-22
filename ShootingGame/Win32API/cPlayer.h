@@ -1,13 +1,9 @@
 #pragma once
-#include "cImage.h"
-
-
 
 class cPlayer
 {
 private:
-	cImage*		m_pPlayerImage;		// 플레이어 이미지 파일
-	RECT		rt;
+	cImage*		m_pPlayer;		// 플레이어 이미지 파일	
 
 	int			m_nDamageDelay;		// 연속 데미지 방지용 딜레이(무적 모드)
 
@@ -19,8 +15,12 @@ public:
 	void Update();
 	void Render();
 
-//	RECT GetBoundingBox() { return m_pPlayerImage->GetBoundingBox(); }
-	float GetPosX() { return m_pPlayerImage->GetPosX(); }
-	float GetPosY() { return m_pPlayerImage->GetPosY(); }
+	RECT rt;
+	RECT GetCollisionNomal() { return m_pPlayer->GetBoundingBox(); }
+	RECT GetCollisionLeft() { return m_pPlayer->GetBoundingBox(3, 0, 20, 0); }
+	RECT GetCollisionRight() { return m_pPlayer->GetBoundingBox(-3, 0, 20, 0); }
+
+	float GetPosX() { return m_pPlayer->GetPosX(); }
+	float GetPosY() { return m_pPlayer->GetPosY(); }
 };
 

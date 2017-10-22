@@ -20,6 +20,7 @@
 #include <time.h>
 #include <string.h>
 #include <map>
+#include <assert.h>
 
 using namespace std;
 
@@ -48,6 +49,7 @@ using namespace std;
 //		## 매니져 추가 ##
 //==================================================================
 #include "cKeyManager.h"
+#include "cImage.h"
 #include "cImageManager.h"
 
 //==================================================================

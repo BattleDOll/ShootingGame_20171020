@@ -69,9 +69,6 @@
     <ClInclude Include="cPlayer.h">
       <Filter>GameFramework2D\5. 게임 소스</Filter>
     </ClInclude>
-    <ClInclude Include="cObjects.h">
-      <Filter>GameFramework2D\5. 게임 소스</Filter>
-    </ClInclude>
     <ClInclude Include="cImageManager.h">
       <Filter>GameFramework2D\2. 매니져</Filter>
     </ClInclude>
@@ -79,6 +76,9 @@
       <Filter>GameFramework2D\5. 게임 소스</Filter>
     </ClInclude>
     <ClInclude Include="cBullet.h">
+      <Filter>GameFramework2D\5. 게임 소스</Filter>
+    </ClInclude>
+    <ClInclude Include="cEnemy.h">
       <Filter>GameFramework2D\5. 게임 소스</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,9 +104,6 @@
     <ClCompile Include="cPlayer.cpp">
       <Filter>GameFramework2D\5. 게임 소스</Filter>
     </ClCompile>
-    <ClCompile Include="cObjects.cpp">
-      <Filter>GameFramework2D\5. 게임 소스</Filter>
-    </ClCompile>
     <ClCompile Include="cImageManager.cpp">
       <Filter>GameFramework2D\2. 매니져</Filter>
     </ClCompile>
@@ -114,6 +111,9 @@
       <Filter>GameFramework2D\5. 게임 소스</Filter>
     </ClCompile>
     <ClCompile Include="cBullet.cpp">
+      <Filter>GameFramework2D\5. 게임 소스</Filter>
+    </ClCompile>
+    <ClCompile Include="cEnemy.cpp">
       <Filter>GameFramework2D\5. 게임 소스</Filter>
     </ClCompile>
   </ItemGroup>

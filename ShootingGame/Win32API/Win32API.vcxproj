@@ -145,7 +145,7 @@
     <ClInclude Include="cKeyManager.h" />
     <ClInclude Include="cMainGame.h" />
     <ClInclude Include="cMap.h" />
-    <ClInclude Include="cObjects.h" />
+    <ClInclude Include="cEnemy.h" />
     <ClInclude Include="cPlayer.h" />
     <ClInclude Include="cSingletonBase.h" />
     <ClInclude Include="MacroUtility.h" />
@@ -162,7 +162,7 @@
     <ClCompile Include="cKeyManager.cpp" />
     <ClCompile Include="cMainGame.cpp" />
     <ClCompile Include="cMap.cpp" />
-    <ClCompile Include="cObjects.cpp" />
+    <ClCompile Include="cEnemy.cpp" />
     <ClCompile Include="cPlayer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

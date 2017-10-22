@@ -145,5 +145,10 @@ public:
 		return RectMakeCenter(m_pImageInfo->fPosX, m_pImageInfo->fPosY,
 			m_pImageInfo->nFrameWidth - adjX, m_pImageInfo->nFrameHeight - adjY);
 	}
+	RECT GetBoundingBox(int posX, int posY, int adjX, int adjY)
+	{
+		return RectMakeCenter(m_pImageInfo->fPosX - posX, m_pImageInfo->fPosY - posY,
+			m_pImageInfo->nFrameWidth - adjX, m_pImageInfo->nFrameHeight - adjY);
+	}
 };
 

@@ -75,6 +75,8 @@ void cImage::Setup(const char * fileName, int width, int height, bool isTrans, C
 	m_pImageInfo->nFrameWidth = width;
 	m_pImageInfo->nFrameHeight = height;
 
+	assert(m_pImageInfo->hBit && "이미지 파일을 읽어오지 못 했다.");
+
 	// 파일 이름
 	int len = strlen(fileName);
 	m_szFileName = new char[len + 1];
@@ -107,6 +109,8 @@ void cImage::Setup(const char * fileName, int width, int height, int frameX, int
 	m_pImageInfo->nMaxFrameY = frameY - 1;
 	m_pImageInfo->nFrameWidth = width / frameX;
 	m_pImageInfo->nFrameHeight = height / frameY;
+
+	assert(m_pImageInfo->hBit && "이미지 파일을 읽어오지 못 했다.");
 
 	// 파일 이름
 	int len = strlen(fileName);
@@ -142,6 +146,8 @@ void cImage::Setup(const char * fileName, int width, int height, int frameX, int
 	m_pImageInfo->nFrameHeight = height / frameY;
 	m_pImageInfo->fPosX = x - width / frameX / 2.0f;
 	m_pImageInfo->fPosY = y - height / frameY / 2.0f;
+
+	assert(m_pImageInfo->hBit && "이미지 파일을 읽어오지 못 했다.");
 
 	// 파일 이름
 	int len = strlen(fileName);
