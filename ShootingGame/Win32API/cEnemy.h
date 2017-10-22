@@ -1,6 +1,7 @@
 #pragma once
 
 class cPlayer;
+class cProgressBar;
 
 struct tagEnemy
 {
@@ -21,7 +22,11 @@ private:
 	vector<tagEnemy>::iterator	m_iterEnemy;
 	tagEnemy stEnemy;
 
-	cImage*	m_imgEnemy;
+	cImage*	m_pEnemy;
+
+	cProgressBar*	m_pHpBar;
+	float			m_fMaxHp;
+	float			m_fCurrHp;
 
 	float	m_fMoveSpeed;
 	int		m_nEnemyDamage;
@@ -35,11 +40,11 @@ public:
 	void Update();
 	void Render();
 
-	RECT GetBoundingBox() { return m_imgEnemy->GetBoundingBox(); }
+	RECT GetBoundingBox() { return m_pEnemy->GetBoundingBox(); }
 
 
-	float GetPosX() { return m_imgEnemy->GetPosX(); }
-	float GetPosY() { return m_imgEnemy->GetPosY(); }
+	float GetPosX() { return m_pEnemy->GetPosX(); }
+	float GetPosY() { return m_pEnemy->GetPosY(); }
 
 	int GetEnemyHP() { return m_nEnemyHP; }
 	void SetEnemyHP(int hp) { m_nEnemyHP = hp; }

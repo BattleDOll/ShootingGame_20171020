@@ -9,6 +9,8 @@ cMainGame::cMainGame()
 {
 	g_pImageManager->AddImage("Enemy", "images/boss.bmp", 112, 46, 1, 1, WINSIZEX / 2 + 56, 200, true, RGB(255, 0, 255));
 	g_pImageManager->AddImage("Player", "images/Player.bmp", 128, 32, 4, 1, WINSIZEX / 2 + 16, WINSIZEY - 200, true, RGB(255, 0, 255));
+	g_pImageManager->AddImage("HpBarBack", "images/progressBarBack.bmp", 50, 10);
+	g_pImageManager->AddImage("HpBarFront", "images/progressBarFront.bmp", 50, 10);
 
 	m_pPlayer = new cPlayer;
 	m_pEnemy = new cEnemy;

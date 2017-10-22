@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include "cPlayer.h"
+#include "cProgressBar.h"
 
 
 cPlayer::cPlayer()
 {
 	m_pPlayer = NULL;
+	m_pHpBar = NULL;
 }
 
 cPlayer::~cPlayer()
@@ -15,8 +17,13 @@ void cPlayer::Setup()
 {
 	m_pPlayer = g_pImageManager->FindImage("Player");
 	m_isShoot = false;
-	m_nPlayerHP = 100;
+//	m_nPlayerHP = 100;
 	m_nPlayerDamage = 10;
+
+	m_pHpBar = new cProgressBar("HpBarBack", "HpBarFront", m_pPlayer->GetFrameWidth(), 5);
+	m_fMaxHp = 100;
+	m_fCurrHp = 100;
+	m_pHpBar->SetGauge(m_fMaxHp, m_fCurrHp);
 }
 
 void cPlayer::Update()
@@ -58,6 +65,14 @@ void cPlayer::Update()
 	{
 		m_isShoot = false;
 	}
+
+	m_fPosX = m_pPlayer->GetPosX();
+	m_fPosY = m_pPlayer->GetPosY();
+
+	m_pHpBar->SetPosX(m_fPosX);
+	m_pHpBar->SetPosY(m_fPosY - m_pPlayer->GetFrameHeight() / 2 + 32);
+	m_pHpBar->SetGauge(m_fMaxHp, m_fCurrHp);
+	m_pHpBar->Update();
 }
 
 void cPlayer::Render()
@@ -108,10 +123,15 @@ void cPlayer::Render()
 	DeleteObject(hSelectPen1);
 	DeleteObject(hPen1);
 
+	if (m_pHpBar != NULL)
+	{
+		m_pHpBar->Render();
+	}
+
 	string str("Player HP : ");
 	char szStr[128]; 
 
-	str += itoa(m_nPlayerHP, szStr, 10);
+	str += itoa(m_fCurrHp, szStr, 10);
 	TextOutA(g_hDC, 100, 50, str.c_str(), str.length());
 
 	//str = "ปýธํทย : ";

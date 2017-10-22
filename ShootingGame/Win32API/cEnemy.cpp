@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include "cEnemy.h"
 #include "cPlayer.h"
+#include "cProgressBar.h"
 
 cEnemy::cEnemy()
 {
-	m_imgEnemy = NULL;
+	m_pEnemy = NULL;
+	m_pHpBar = NULL;
 }
 
 cEnemy::~cEnemy()
@@ -14,15 +16,14 @@ cEnemy::~cEnemy()
 void cEnemy::Setup()
 {
 
-	m_imgEnemy = g_pImageManager->FindImage("Enemy");
+	m_pEnemy = g_pImageManager->FindImage("Enemy");
 	m_nEnemyHP = 1000;
 }
 
 void cEnemy::Update()
 {
-	//if (m_imgEnemy->GetPosX() < m_pPlayer->GetPosX() )
+	//if (m_pEnemy->GetPosX() < m_pPlayer->GetPosX())
 	//{
-	//	m_imgEnemy->SetPosX(m_imgEnemy->GetPosX() - (m_pPlayer->GetPosX() - m_imgEnemy->GetPosX()) / 2);
 	//}
 }
 
@@ -31,13 +32,13 @@ void cEnemy::Render()
 	HPEN hPen = (HPEN)CreatePen(0, 3, RGB(255, 0, 0));
 	HPEN hSelectPen = (HPEN)SelectObject(g_hDC, hPen);
 
-	m_imgEnemy->Render(g_hDC, m_imgEnemy->GetBoundingBox().left, m_imgEnemy->GetBoundingBox().top, 112, 46);
+	m_pEnemy->Render(g_hDC, m_pEnemy->GetBoundingBox().left, m_pEnemy->GetBoundingBox().top, 112, 46);
 	
 	BoudingLineMake(g_hDC,
-		m_imgEnemy->GetBoundingBox().left, 
-		m_imgEnemy->GetBoundingBox().top,
-		m_imgEnemy->GetFrameWidth(),
-		m_imgEnemy->GetFrameHeight());
+		m_pEnemy->GetBoundingBox().left, 
+		m_pEnemy->GetBoundingBox().top,
+		m_pEnemy->GetFrameWidth(),
+		m_pEnemy->GetFrameHeight());
 
 	DeleteObject(hSelectPen);
 	DeleteObject(hPen);
@@ -51,9 +52,9 @@ void cEnemy::Render()
 
 void cEnemy::CreateEnemy()
 {
-	stEnemy.fPosX = (float)m_imgEnemy->GetBoundingBox().left + (float)m_imgEnemy->GetFrameWidth() / 2 ;
-	stEnemy.fPosY = (float)m_imgEnemy->GetBoundingBox().top + (float)m_imgEnemy->GetHeight() / 2 ;
-	stEnemy.x = WINSIZEX / 2;
-	stEnemy.y = WINSIZEY / 2;
+	//stEnemy.fPosX = (float)m_pEnemy->GetBoundingBox().left + (float)m_pEnemy->GetFrameWidth() / 2 ;
+	//stEnemy.fPosY = (float)m_pEnemy->GetBoundingBox().top + (float)m_pEnemy->GetHeight() / 2 ;
+	//stEnemy.x = WINSIZEX / 2;
+	//stEnemy.y = WINSIZEY / 2;
 }
 

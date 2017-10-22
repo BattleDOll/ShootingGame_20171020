@@ -1,14 +1,24 @@
 #pragma once
 
+class cProgressBar;
+
 class cPlayer
 {
 private:
-	cImage*		m_pPlayer;		// 플레이어 이미지 파일	
+	cImage*		m_pPlayer;		// 플레이어 이미지 파일
+	
+	float			m_fPosX;
+	float			m_fPosY;
+
 	bool		m_isShoot;
 
 	int			m_nDamageDelay;		// 연속 데미지 방지용 딜레이(무적 모드)
-	int			m_nPlayerHP;
+//	int			m_nPlayerHP;
 	int			m_nPlayerDamage;
+
+	cProgressBar*	m_pHpBar;
+	float			m_fMaxHp;
+	float			m_fCurrHp;
 
 public:
 	cPlayer();
@@ -25,9 +35,8 @@ public:
 
 	float GetPosX() { return m_pPlayer->GetPosX(); }
 	float GetPosY() { return m_pPlayer->GetPosY(); }
-	int GetPlayerHP() { return m_nPlayerHP; }
-	void SetPlayerHP(int hp) { m_nPlayerHP = hp; }
+	int GetPlayerHP() { return m_fCurrHp; }
+	void SetPlayerHP(int hp) { m_fCurrHp = hp; }
 
 	bool GetIsShoot() { return m_isShoot; }
 };
-
