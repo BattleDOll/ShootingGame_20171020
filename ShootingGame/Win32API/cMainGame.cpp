@@ -59,6 +59,7 @@ void cMainGame::Update()
 		}
 
 		MoveItem();
+		ItemHitPlayer();
 	}
 	else if (g_pKeyManager->isOnceKeyDown(VK_RETURN))
 	{
@@ -78,6 +79,12 @@ void cMainGame::Render()
 		m_pPlayer->Render();
 		m_pBullet->Render();
 		RenderItem();
+
+		string str("m_nBuffTime: ");
+		char szStr[128];
+
+		str += itoa(m_nBuffTime, szStr, 10);
+		TextOutA(g_hDC, 300, 50, str.c_str(), str.length());
 	}
 	else
 	{
@@ -108,6 +115,15 @@ void cMainGame::MoveItem()
 			iter++;
 		}
 	}
+
+	if (m_nBuffTime > 0)
+	{
+		--m_nBuffTime;
+	}
+	else if (m_nBuffTime == 0)
+	{
+		m_pPlayer->SetDamage(10);
+	}
 }
 
 void cMainGame::RenderItem()
@@ -115,5 +131,32 @@ void cMainGame::RenderItem()
 	for (auto iter = m_vecItem.begin(); iter != m_vecItem.end(); iter++)
 	{
 		iter->Render();
+	}
+}
+
+void cMainGame::ItemHitPlayer()
+{
+	for (auto iter = m_vecItem.begin(); iter != m_vecItem.end();)
+	{
+		RECT rt;
+		if(IntersectRect(&rt, &iter->GetRect(), &m_pPlayer->GetCollisionNomal()))
+		{
+			iter = m_vecItem.erase(iter);
+			int itemRand = GetRandom(1, 100);
+			if (itemRand > 50)
+			{
+				m_pPlayer->SetHP(m_pPlayer->GetHP() + 100);
+			}
+			else
+			{
+				m_nBuffTime = 1500;
+
+				m_pPlayer->SetDamage(m_pPlayer->GetDamage() + 10);
+			}
+		}
+		else
+		{
+			iter++;
+		}
 	}
 }

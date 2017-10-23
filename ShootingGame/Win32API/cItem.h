@@ -11,7 +11,6 @@ private:
 	float	m_fPosX;
 	float	m_fPosY;
 
-
 	RECT   m_rtBody;
 
 public:
@@ -26,5 +25,7 @@ public:
 	void  SetPosX(float x) { m_fPosX = x; }
 	float GetPosY() { return m_fPosY; }
 	void  SetPosY(float y) { m_fPosX = y; }
+
+	RECT GetRect() { return m_rtBody; }
 };
 

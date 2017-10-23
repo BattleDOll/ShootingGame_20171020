@@ -55,17 +55,17 @@ void cBullet::Update()
 		if (IntersectRect(&rt, &m_pPlayer->GetCollisionNomal(), &iter->rtEnemyBullet))
 		{
 			iter= m_vecEnemyBullets.erase(iter);
-			m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - stEnemyBullet.Damage);
+			m_pPlayer->SetHP(m_pPlayer->GetHP() - stEnemyBullet.Damage);
 		}
 		else if (IntersectRect(&rt, &m_pPlayer->GetCollisionLeft(), &iter->rtEnemyBullet))
 		{
 			iter = m_vecEnemyBullets.erase(iter);
-			m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - stEnemyBullet.Damage);
+			m_pPlayer->SetHP(m_pPlayer->GetHP() - stEnemyBullet.Damage);
 		}
 		else if (IntersectRect(&rt, &m_pPlayer->GetCollisionRight(), &iter->rtEnemyBullet))
 		{
 			iter = m_vecEnemyBullets.erase(iter);
-			m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - stEnemyBullet.Damage);
+			m_pPlayer->SetHP(m_pPlayer->GetHP() - stEnemyBullet.Damage);
 		}
 		else
 		{

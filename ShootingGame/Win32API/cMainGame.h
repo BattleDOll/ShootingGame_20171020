@@ -15,6 +15,7 @@ private:
 
 	int		m_nGenDelay;
 	int		nRandDelay;
+	int		m_nBuffTime;
 
 	bool			m_isPlaying;
 
@@ -31,4 +32,6 @@ public:
 	void MakeItem();
 	void MoveItem();
 	void RenderItem();
+
+	void ItemHitPlayer();
 };

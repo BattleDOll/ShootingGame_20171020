@@ -134,6 +134,10 @@ void cPlayer::Render()
 	str += itoa(m_fCurrHp, szStr, 10);
 	TextOutA(g_hDC, 100, 50, str.c_str(), str.length());
 
+	str = "데미지: ";
+	str += itoa(m_nPlayerDamage, szStr, 10);
+	TextOutA(g_hDC, 100, 100, str.c_str(), str.length());
+
 	//str = "생명력 : ";
 	//str += itoa(m_nLife, szStr, 10);
 	//TextOutA(g_hDC, 100, 75, str.c_str(), str.length());
