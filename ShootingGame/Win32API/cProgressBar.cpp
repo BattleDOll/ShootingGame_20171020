@@ -30,5 +30,12 @@ void cProgressBar::Render()
 void cProgressBar::SetGauge(float maxGauge, float currGauge)
 {
 	// 현재 체력 / 전체 체력 비율로 크기를 계산한다.
-	m_nCurrWidth = (currGauge / maxGauge) * m_nWidth;
+	if (currGauge <= maxGauge)
+	{
+		m_nCurrWidth = (currGauge / maxGauge) * m_nWidth;
+	}
+	if (currGauge >= maxGauge)
+	{
+		m_nCurrWidth = (maxGauge / maxGauge) * m_nWidth;
+	}
 }

@@ -3,16 +3,6 @@
 class cPlayer;
 class cProgressBar;
 
-struct tagEnemy
-{
-	RECT	rtEnemy;
-
-	float	x, y;
-	float	fPosX, fPosY;
-
-	int		ShootDelay;
-};
-
 class cEnemy
 {
 private:
@@ -20,17 +10,16 @@ private:
 	cImage*				m_pEnemy;
 	cProgressBar*		m_pHpBar;
 
-	tagEnemy			stEnemy;
-
-	vector<tagEnemy>			m_vecEnemy;
-	vector<tagEnemy>::iterator	m_iterEnemy;
+	RECT	rtEnemy;
 
 	float		m_fMaxHp;
 	float		m_fCurrHp;
 	float		m_fMoveSpeed;
+	float		x, y;
+	float		m_fPosX, m_fPosY;
 
 	int			m_nEnemyDamage;
-	int			m_nEnemyHP;
+	int			ShootDelay;
 
 public:
 	cEnemy();
@@ -45,12 +34,10 @@ public:
 	float GetPosX() { return m_pEnemy->GetPosX(); }
 	float GetPosY() { return m_pEnemy->GetPosY(); }
 
-	int GetEnemyHP() { return m_nEnemyHP; }
-	void SetEnemyHP(int hp) { m_nEnemyHP = hp; }
+	int GetEnemyHP() { return m_fCurrHp; }
+	void SetEnemyHP(int hp) { m_fCurrHp = hp; }
 	int GetEnemyDamage() { return m_nEnemyDamage; }
 	int SetEnemyDamage(int damage) { m_nEnemyDamage = damage; }
-	int GetShootDelay() { return m_iterEnemy->ShootDelay; }
-	void SetShootDelay(int delay) { m_iterEnemy->ShootDelay = delay; }
-
-	void CreateEnemy();
+	int GetShootDelay() { return ShootDelay; }
+	void SetShootDelay(int delay) { ShootDelay = delay; }
 };

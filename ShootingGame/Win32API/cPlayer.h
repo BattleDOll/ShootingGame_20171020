@@ -14,7 +14,6 @@ private:
 	float			m_fCurrHp;
 
 	int				m_nDamageDelay;		// 연속 데미지 방지용 딜레이(무적 모드)
-//	int				m_nPlayerHP;
 	int				m_nPlayerDamage;
 
 	bool			m_isShoot;
@@ -27,7 +26,6 @@ public:
 	void Update();
 	void Render();
 
-	//	RECT rt;
 	RECT GetCollisionNomal() { return m_pPlayer->GetBoundingBox(); }
 	RECT GetCollisionLeft() { return m_pPlayer->GetBoundingBox(3, 0, 20, 0); }
 	RECT GetCollisionRight() { return m_pPlayer->GetBoundingBox(-3, 0, 20, 0); }

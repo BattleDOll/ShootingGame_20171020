@@ -17,7 +17,6 @@ void cPlayer::Setup()
 {
 	m_pPlayer = g_pImageManager->FindImage("Player");
 	m_isShoot = false;
-//	m_nPlayerHP = 100;
 	m_nPlayerDamage = 10;
 
 	m_pHpBar = new cProgressBar("HpBarBack", "HpBarFront", m_pPlayer->GetFrameWidth(), 5);
@@ -134,7 +133,7 @@ void cPlayer::Render()
 	str += itoa(m_fCurrHp, szStr, 10);
 	TextOutA(g_hDC, 100, 50, str.c_str(), str.length());
 
-	str = "µ¥¹ÌÁö: ";
+	str = "Damage: ";
 	str += itoa(m_nPlayerDamage, szStr, 10);
 	TextOutA(g_hDC, 100, 100, str.c_str(), str.length());
 

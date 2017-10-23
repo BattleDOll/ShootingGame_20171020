@@ -16,8 +16,8 @@ void cItem::Setup()
 	nRandDelay = GetRandom(500, 1000);
 	m_fPosX = nRandX;
 	m_fPosY = -10;
-	m_nSizeW = 10;
-	m_nSizeH = 10;
+	m_nSizeW = 20;
+	m_nSizeH = 20;
 
 	m_nGenDelay = 0;
 

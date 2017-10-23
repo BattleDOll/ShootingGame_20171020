@@ -3,21 +3,6 @@
 class cPlayer;
 class cEnemy;
 
-struct tagEnemyBullet
-{
-	RECT	rtEnemyBullet;
-
-	float	x, y;			// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
-	float	x1, y1;			// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
-
-	float	speed;			// ÃÑ¾Ë ¼Ó·Â
-	float	angle;			// ÃÑ¾Ë ¹æÇâ
-	float	radius;			// ÃÑ¾Ë ¹ÝÁö¸§
-
-	int		ShootDelay;
-	int		Damage;
-};
-
 struct tagPlayerBullet
 {
 	RECT	rtPlayerBullet;
@@ -26,6 +11,21 @@ struct tagPlayerBullet
 	float	x1, y1;
 	float	speed;			// ÃÑ¾Ë ¼Ó·Â
 	float	speed1;
+	float	angle;			// ÃÑ¾Ë ¹æÇâ
+	float	radius;			// ÃÑ¾Ë ¹ÝÁö¸§
+
+	int		ShootDelay;
+	int		Damage;
+};
+
+struct tagEnemyBullet
+{
+	RECT	rtEnemyBullet;
+
+	float	x, y;			// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
+	float	x1, y1;			// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
+
+	float	speed;			// ÃÑ¾Ë ¼Ó·Â
 	float	angle;			// ÃÑ¾Ë ¹æÇâ
 	float	radius;			// ÃÑ¾Ë ¹ÝÁö¸§
 
@@ -55,4 +55,7 @@ public:
 
 	void SetPlayer(cPlayer* player) { m_pPlayer = player; }
 	void SetEnemy(cEnemy* Enemy) { m_pEnemy = Enemy; }
+
+	float GetRadius() { return stPlayerBullet.radius; }
+	void SetRadius(int radius) { stPlayerBullet.radius = radius; }
 };

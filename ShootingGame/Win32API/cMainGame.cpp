@@ -40,6 +40,7 @@ void cMainGame::Setup()
 
 void cMainGame::Update()
 {
+
 	cGameNode::Update();
 
 	if (m_isPlaying)
@@ -84,7 +85,7 @@ void cMainGame::Render()
 		char szStr[128];
 
 		str += itoa(m_nBuffTime, szStr, 10);
-		TextOutA(g_hDC, 300, 50, str.c_str(), str.length());
+		TextOutA(g_hDC, 200, 100, str.c_str(), str.length());
 	}
 	else
 	{
@@ -123,6 +124,7 @@ void cMainGame::MoveItem()
 	else if (m_nBuffTime == 0)
 	{
 		m_pPlayer->SetDamage(10);
+		m_pBullet->SetRadius(3);
 	}
 }
 
@@ -152,6 +154,7 @@ void cMainGame::ItemGet()
 				m_nBuffTime = 1500;
 
 				m_pPlayer->SetDamage(m_pPlayer->GetDamage() + 10);
+				m_pBullet->SetRadius(m_pBullet->GetRadius() + 3);
 			}
 		}
 		else

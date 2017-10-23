@@ -15,16 +15,23 @@ cEnemy::~cEnemy()
 
 void cEnemy::Setup()
 {
-
 	m_pEnemy = g_pImageManager->FindImage("Enemy");
-	m_nEnemyHP = 1000;
+
+	m_pHpBar = new cProgressBar("HpBarBack", "HpBarFront", m_pEnemy->GetFrameWidth(), 5);
+	m_fMaxHp = 1000;
+	m_fCurrHp = 1000;
+	m_pHpBar->SetGauge(m_fMaxHp, m_fCurrHp);
 }
 
 void cEnemy::Update()
 {
-	//if (m_pEnemy->GetPosX() < m_pPlayer->GetPosX())
-	//{
-	//}
+	m_fPosX = m_pEnemy->GetPosX();
+	m_fPosY = m_pEnemy->GetPosY() - 40;
+
+	m_pHpBar->SetPosX(m_fPosX);
+	m_pHpBar->SetPosY(m_fPosY - m_pEnemy->GetFrameHeight() / 2 + 32);
+	m_pHpBar->SetGauge(m_fMaxHp, m_fCurrHp);
+	m_pHpBar->Update();
 }
 
 void cEnemy::Render()
@@ -43,18 +50,15 @@ void cEnemy::Render()
 	DeleteObject(hSelectPen);
 	DeleteObject(hPen);
 
+	if (m_pHpBar != NULL)
+	{
+		m_pHpBar->Render();
+	}
+
 	string str("Enemy HP : ");
 	char szStr[128];
 
-	str += itoa(m_nEnemyHP, szStr, 10);
-	TextOutA(g_hDC, 100, 75, str.c_str(), str.length());
-}
-
-void cEnemy::CreateEnemy()
-{
-	//stEnemy.fPosX = (float)m_pEnemy->GetBoundingBox().left + (float)m_pEnemy->GetFrameWidth() / 2 ;
-	//stEnemy.fPosY = (float)m_pEnemy->GetBoundingBox().top + (float)m_pEnemy->GetHeight() / 2 ;
-	//stEnemy.x = WINSIZEX / 2;
-	//stEnemy.y = WINSIZEY / 2;
+	str += itoa(m_fCurrHp, szStr, 10);
+	TextOutA(g_hDC, 500, 50, str.c_str(), str.length());
 }
 
