@@ -13,92 +13,118 @@ cBullet::~cBullet()
 
 void cBullet::Setup()
 {
-	enemyBullet.ShootDelay = 0;
-	playerBullet.ShootDelay = 0;
+	stEnemyBullet.ShootDelay = 0;
+	stPlayerBullet.ShootDelay = 0;
 }
 
 void cBullet::Update()
 {	// Àû ÃÑ¾Ë 
-	if (enemyBullet.ShootDelay > 0)
+	if (stEnemyBullet.ShootDelay > 0)
 	{
-		--enemyBullet.ShootDelay;
+		--stEnemyBullet.ShootDelay;
 	}
-	if (enemyBullet.ShootDelay == 0)
+	if (stEnemyBullet.ShootDelay == 0)
 	{
-		enemyBullet.ShootDelay = 20;
+		stEnemyBullet.ShootDelay = 20;
 
-		enemyBullet.x = m_pEnemy->GetPosX() - 25;
-		enemyBullet.y = m_pEnemy->GetPosY();
-		enemyBullet.speed = 5;
-		enemyBullet.radius = 3;
-		enemyBullet.Damage = 2;
-		enemyBullet.angle = GetAngle(enemyBullet.x, enemyBullet.y, m_pPlayer->GetPosX(), m_pPlayer->GetPosY());
+		stEnemyBullet.x = m_pEnemy->GetPosX() - 25;
+		stEnemyBullet.y = m_pEnemy->GetPosY();
+		stEnemyBullet.speed = 5;
+		stEnemyBullet.radius = 3;
+		stEnemyBullet.Damage = 2;
+		stEnemyBullet.angle = GetAngle(stEnemyBullet.x, stEnemyBullet.y, m_pPlayer->GetPosX(), m_pPlayer->GetPosY());
 
-		m_vecEnemyBullets.push_back(enemyBullet);
+		m_vecEnemyBullets.push_back(stEnemyBullet);
+
+		stEnemyBullet.x = m_pEnemy->GetPosX() + 25;
+		stEnemyBullet.angle = GetAngle(stEnemyBullet.x, stEnemyBullet.y, m_pPlayer->GetPosX(), m_pPlayer->GetPosY());
+
+
+		m_vecEnemyBullets.push_back(stEnemyBullet);
 	}
 
 	for (auto iter = m_vecEnemyBullets.begin(); iter != m_vecEnemyBullets.end();)
 	{
-			iter->x += cosf(iter->angle / 180 * PI) * iter->speed;
-			iter->y += -sinf(iter->angle / 180 * PI) * iter->speed;
+	
+		iter->x += cosf(iter->angle / 180 * PI) * iter->speed;
+		iter->y += -sinf(iter->angle / 180 * PI) * iter->speed;
 
-			RECT rt;
-			iter->rtEnemyBullet = RectMakeCenter( (int)iter->x, (int)iter->y, (int)iter->radius * 2, (int)iter->radius * 2 );
+		RECT rt;
+		iter->rtEnemyBullet = RectMakeCenter( (int)iter->x, (int)iter->y, (int)iter->radius * 2, (int)iter->radius * 2 );
 
-			if (IntersectRect(&rt, &m_pPlayer->GetCollisionNomal(), &iter->rtEnemyBullet))
-			{
-				iter= m_vecEnemyBullets.erase(iter);
-				m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - enemyBullet.Damage);
-			}
-			else if (IntersectRect(&rt, &m_pPlayer->GetCollisionLeft(), &iter->rtEnemyBullet))
-			{
-				iter = m_vecEnemyBullets.erase(iter);
-				m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - enemyBullet.Damage);
-			}
-			else if (IntersectRect(&rt, &m_pPlayer->GetCollisionRight(), &iter->rtEnemyBullet))
-			{
-				iter = m_vecEnemyBullets.erase(iter);
-				m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - enemyBullet.Damage);
-			}
-			else
-			{
-				iter++;
-			}
+		if (IntersectRect(&rt, &m_pPlayer->GetCollisionNomal(), &iter->rtEnemyBullet))
+		{
+			iter= m_vecEnemyBullets.erase(iter);
+			m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - stEnemyBullet.Damage);
+		}
+		else if (IntersectRect(&rt, &m_pPlayer->GetCollisionLeft(), &iter->rtEnemyBullet))
+		{
+			iter = m_vecEnemyBullets.erase(iter);
+			m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - stEnemyBullet.Damage);
+		}
+		else if (IntersectRect(&rt, &m_pPlayer->GetCollisionRight(), &iter->rtEnemyBullet))
+		{
+			iter = m_vecEnemyBullets.erase(iter);
+			m_pPlayer->SetPlayerHP(m_pPlayer->GetPlayerHP() - stEnemyBullet.Damage);
+		}
+		else
+		{
+			iter++;
+		}
 	}
 
 	//ÇÃ¿¡ÀÌ¾î ÃÑ¾Ë
 	if (m_pPlayer->GetIsShoot() == true)
 	{
-		if (playerBullet.ShootDelay > 0)
+		if (stPlayerBullet.ShootDelay > 0)
 		{
- 			--playerBullet.ShootDelay;
+ 			--stPlayerBullet.ShootDelay;
 		}
-		if (playerBullet.ShootDelay == 0)
+		if (stPlayerBullet.ShootDelay == 0)
 		{
-			playerBullet.ShootDelay = 10;
+			stPlayerBullet.ShootDelay = 10;
 
-			playerBullet.x = m_pPlayer->GetPosX();
-			playerBullet.y = m_pPlayer->GetPosY();
-			playerBullet.speed = 10;
-			playerBullet.radius = 3;
-			playerBullet.angle = GetAngle(playerBullet.x, playerBullet.y, m_pEnemy->GetPosX(), m_pEnemy->GetPosY());
+			if (m_pPlayer->GetPosY() > m_pEnemy->GetPosY())
+			{
+				stPlayerBullet.x = m_pPlayer->GetPosX();
+				stPlayerBullet.y = m_pPlayer->GetPosY();
+				stPlayerBullet.speed = 10;
+				stPlayerBullet.radius = 3;
+				stPlayerBullet.angle = GetAngle(stPlayerBullet.x, stPlayerBullet.y, m_pEnemy->GetPosX(), m_pEnemy->GetPosY());
 
-			m_vecPlayerBullets.push_back(playerBullet);
+				m_vecPlayerBullets.push_back(stPlayerBullet);
+			}
+
+			//if (m_pPlayer->GetPosY() < m_pEnemy->GetPosY())
+			//{
+			//	stPlayerBullet.x = m_pPlayer->GetPosX();
+			//	stPlayerBullet.y = m_pPlayer->GetPosY();
+			//	stPlayerBullet.speed = 10;
+			//	stPlayerBullet.radius = 3;
+			//	stPlayerBullet.angle = GetAngle(stPlayerBullet.x, stPlayerBullet.y, m_pEnemy->GetPosX(), m_pEnemy->GetPosY());
+			//
+			//	m_vecPlayerBullets.push_back(stPlayerBullet);
+			//}
+
 			m_pEnemy->SetEnemyHP(m_pEnemy->GetEnemyHP() - 5);
-
 		}
 	}
 	else
 	{
-		playerBullet.ShootDelay = 0;
+		stPlayerBullet.ShootDelay = 0;
 	}
 
 	for (auto iter = m_vecPlayerBullets.begin(); iter != m_vecPlayerBullets.end();)
 	{
-//		iter->x += cosf(iter->angle / 180 * PI) * iter->speed;
-//		iter->y += -sinf(iter->angle / 180 * PI) * iter->speed;
-
-		iter->y -= iter->speed;
+		//if (m_pPlayer->GetPosY() < m_pEnemy->GetPosY())
+		//{
+		//	iter->x += cosf(iter->angle / 180 * PI) * iter->speed;
+		//	iter->y += -sinf(iter->angle / 180 * PI) * iter->speed;
+		//}
+		if (m_pPlayer->GetPosY() > m_pEnemy->GetPosY())
+		{
+			iter->y -= iter->speed;
+		}
 
 		RECT rt1;
 		iter->rtPlayerBullet = RectMakeCenter((int)iter->x, (int)iter->y, (int)iter->radius * 2, (int)iter->radius * 2);

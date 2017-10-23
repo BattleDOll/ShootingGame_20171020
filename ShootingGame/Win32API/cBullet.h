@@ -5,12 +5,14 @@ class cEnemy;
 
 struct tagEnemyBullet
 {
+	RECT	rtEnemyBullet;
+
 	float	x, y;			// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
+	float	x1, y1;			// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
+
 	float	speed;			// ÃÑ¾Ë ¼Ó·Â
 	float	angle;			// ÃÑ¾Ë ¹æÇâ
 	float	radius;			// ÃÑ¾Ë ¹ÝÁö¸§
-
-	RECT	rtEnemyBullet;
 
 	int		ShootDelay;
 	int		Damage;
@@ -18,14 +20,14 @@ struct tagEnemyBullet
 
 struct tagPlayerBullet
 {
+	RECT	rtPlayerBullet;
+
 	float	x, y;				// ÃÑ¾Ë Áß¾Ó ÁÂÇ¥
 	float	x1, y1;
 	float	speed;			// ÃÑ¾Ë ¼Ó·Â
 	float	speed1;
 	float	angle;			// ÃÑ¾Ë ¹æÇâ
 	float	radius;			// ÃÑ¾Ë ¹ÝÁö¸§
-
-	RECT	rtPlayerBullet;
 
 	int		ShootDelay;
 	int		Damage;
@@ -37,8 +39,9 @@ private:
 	cPlayer*					m_pPlayer;
 	cEnemy*						m_pEnemy;
 
-	tagEnemyBullet				enemyBullet;
-	tagPlayerBullet				playerBullet;
+	tagEnemyBullet				stEnemyBullet;
+	tagPlayerBullet				stPlayerBullet;
+
 	vector<tagEnemyBullet>		m_vecEnemyBullets;
 	vector<tagPlayerBullet>		m_vecPlayerBullets;
 
