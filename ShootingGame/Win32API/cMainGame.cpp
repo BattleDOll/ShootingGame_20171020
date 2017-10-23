@@ -59,7 +59,7 @@ void cMainGame::Update()
 		}
 
 		MoveItem();
-		ItemHitPlayer();
+		ItemGet();
 	}
 	else if (g_pKeyManager->isOnceKeyDown(VK_RETURN))
 	{
@@ -134,7 +134,7 @@ void cMainGame::RenderItem()
 	}
 }
 
-void cMainGame::ItemHitPlayer()
+void cMainGame::ItemGet()
 {
 	for (auto iter = m_vecItem.begin(); iter != m_vecItem.end();)
 	{

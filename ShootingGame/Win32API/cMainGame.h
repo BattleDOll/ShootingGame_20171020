@@ -33,5 +33,5 @@ public:
 	void MoveItem();
 	void RenderItem();
 
-	void ItemHitPlayer();
+	void ItemGet();
 };
