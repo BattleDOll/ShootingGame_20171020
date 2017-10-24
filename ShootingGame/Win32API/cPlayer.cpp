@@ -11,6 +11,14 @@ cPlayer::cPlayer()
 
 cPlayer::~cPlayer()
 {
+	vector<string> saveData;
+	char temp[128];
+
+	saveData.push_back(itoa(m_fPosX, temp, 10));
+	saveData.push_back(itoa(m_fPosY, temp, 10));
+	saveData.push_back(itoa(m_fCurrHp, temp, 10));
+
+	g_pFileDataManager->txtSave("PlayerData.txt", saveData );
 }
 
 void cPlayer::Setup()
@@ -23,6 +31,15 @@ void cPlayer::Setup()
 	m_fMaxHp = 100;
 	m_fCurrHp = 100;
 	m_pHpBar->SetGauge(m_fMaxHp, m_fCurrHp);
+
+	vector<string> vecLoad = g_pFileDataManager->txtLoad("PlayerData.txt");
+
+	if (!vecLoad.empty())
+	{
+		m_pPlayer->SetPosX(atoi(vecLoad[0].c_str()));
+		m_pPlayer->SetPosY(atoi(vecLoad[1].c_str()));
+		m_fCurrHp = atoi(vecLoad[2].c_str());
+	}
 }
 
 void cPlayer::Update()

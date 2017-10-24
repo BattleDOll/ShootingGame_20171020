@@ -51,6 +51,8 @@ using namespace std;
 #include "cKeyManager.h"
 #include "cImage.h"
 #include "cImageManager.h"
+#include "cFileDataManager.h"
+
 
 //==================================================================
 //		## 전역변수 ##

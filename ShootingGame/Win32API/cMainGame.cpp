@@ -147,7 +147,7 @@ void cMainGame::ItemGet()
 			int itemRand = GetRandom(1, 100);
 			if (itemRand > 50)
 			{
-				m_pPlayer->SetHP(m_pPlayer->GetHP() + 100);
+				m_pPlayer->SetHP(m_pPlayer->GetHP() + 100); 
 			}
 			else
 			{

@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cBullet.h" />
+    <ClInclude Include="cFileDataManager.h" />
     <ClInclude Include="cGameNode.h" />
     <ClInclude Include="cImage.h" />
     <ClInclude Include="cImageManager.h" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cBullet.cpp" />
+    <ClCompile Include="cFileDataManager.cpp" />
     <ClCompile Include="cGameNode.cpp" />
     <ClCompile Include="cImage.cpp" />
     <ClCompile Include="cImageManager.cpp" />
