@@ -22,17 +22,18 @@ cPlayer::~cPlayer()
 }
 
 void cPlayer::Setup()
-{
-	m_pPlayer = g_pImageManager->FindImage("Player");
+{	
 	m_isShoot = false;
 	m_nPlayerDamage = 10;
+
+	m_pPlayer = g_pImageManager->FindImage("Player");
+
+	vector<string> vecLoad = g_pFileDataManager->txtLoad("PlayerData.txt");
 
 	m_pHpBar = new cProgressBar("HpBarBack", "HpBarFront", m_pPlayer->GetFrameWidth(), 5);
 	m_fMaxHp = 100;
 	m_fCurrHp = 100;
 	m_pHpBar->SetGauge(m_fMaxHp, m_fCurrHp);
-
-	vector<string> vecLoad = g_pFileDataManager->txtLoad("PlayerData.txt");
 
 	if (!vecLoad.empty())
 	{

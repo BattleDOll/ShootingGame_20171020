@@ -90,6 +90,9 @@
     <ClInclude Include="cFileDataManager.h">
       <Filter>GameFramework2D\2. 매니져</Filter>
     </ClInclude>
+    <ClInclude Include="cScore.h">
+      <Filter>GameFramework2D\5. 게임 소스</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="cFileDataManager.cpp">
       <Filter>GameFramework2D\2. 매니져</Filter>
+    </ClCompile>
+    <ClCompile Include="cScore.cpp">
+      <Filter>GameFramework2D\5. 게임 소스</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

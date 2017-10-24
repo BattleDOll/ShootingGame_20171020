@@ -11,6 +11,8 @@ cMainGame::cMainGame()
 	g_pImageManager->AddImage("Player", "images/Player.bmp", 128, 32, 4, 1, WINSIZEX / 2 + 16, WINSIZEY - 200, true, RGB(255, 0, 255));
 	g_pImageManager->AddImage("HpBarBack", "images/progressBarBack.bmp", 50, 10);
 	g_pImageManager->AddImage("HpBarFront", "images/progressBarFront.bmp", 50, 10);
+	g_pImageManager->AddImage("Number", "images/number.bmp", 507, 56, 9, 2, WINSIZEX / 2, 56, true, RGB(255, 0, 255));
+
 
 	m_pPlayer = new cPlayer;
 	m_pEnemy = new cEnemy;
@@ -29,7 +31,7 @@ void cMainGame::Setup()
 	m_pPlayer->Setup();	
 	m_pEnemy->Setup();
 
-	// 불렛에서 플레이어와 에너미 참조? 
+	// 불렛에서 플레이어와 에너미 참조
 	m_pBullet->Setup();
 	m_pBullet->SetPlayer(m_pPlayer);
 	m_pBullet->SetEnemy(m_pEnemy);
